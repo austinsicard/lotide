@@ -10,25 +10,25 @@ const assertEqual = function(actual, expected) {
 
 
 const countOnly = function (allItems, itemsToCount) {
-  const finalResults = {};
+  const results = {};
 
-  for (let all in allItems) {
+  for (let item in allItems) {
 
-    if (itemsToCount[all]) {
+    if (itemsToCount[item]) {
 
-      if (finalResults[all]) {
+      if (results[item]) {
 
-        finalResults[all] += 1;
+        results[item] += 1;
 
       } else {
 
-        finalResults[all] = 1;
+        results[item] = 1;
 
       }
     }
   }
 
-  return finalResults;
+  return results;
 
 };
 const firstNames = [
@@ -49,3 +49,5 @@ assertEqual(result1["Jason"], 1);
 assertEqual(result1["Karima"], undefined);
 assertEqual(result1["Fang"], 2);
 assertEqual(result1["Agouhanna"], undefined);
+
+console.log(result1[Jason]);
