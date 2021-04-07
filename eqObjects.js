@@ -1,13 +1,3 @@
-// FUNCTION IMPLEMENTATION
-const assertEqual = function(actual, expected) {
-
-  if (actual === expected) {
-    console.log(`✅ Assertion Passed: ${actual} ===  ${expected}`);
-  } else {
-    console.log(`❌ Assertion Failed: ${actual} !== ${expected}`);
-  }
-};
-
 const eqArrays = function(actual, expected) {
 
   let compared = false;
@@ -17,7 +7,7 @@ const eqArrays = function(actual, expected) {
 
     compared = true;
 
-    for (let i = 0 ; i < actual.length ; i++) {
+    for (let i = 0; i < actual.length; i++) {
       
       if (actual[i] !== expected[i]) {
 
@@ -32,33 +22,37 @@ const eqObjects = function(object1, object2) {
 
   let obj1keys = Object.keys(object1);
   let obj2keys = Object.keys(object2);
-  let compared = true;
 
   if (obj1keys.length !== obj2keys.length) {
 
     return false;
-  
   }
+  for (const value of obj1keys) {
 
-    for (const value of obj1keys) {
+    // console.log(value);
+    if (Array.isArray(object1[value]) && Array.isArray(object2[value])) {
 
-      if (Array.isArray(obj1keys[value]) && Array.isArray(obj2keys[value])) {
-
-        if (!eqArrays(obj1keys[value],obj2keys[value])) {
-
-          compared = false;
-
-        }
+      if (!eqArrays(object1[value],object2[value])) {
         
-      } else if (obj1keys[value] !== obj2keys[value]) {
-
-        compared = false;
-
+        return false;
+      }
+    } else {
+      if (object1[value] !== object2[value]) {
+        return false;
       }
     }
-    return compared;
+  }
+  return true;
 };
 
-const ab = { a: "1", b: "2", c: "4"};
-const ba = { b: "2", a: "1" };
-console.log(eqObjects(ab, ba)); // => true
+
+//Passes
+// const cd = { c: "1", d: ["2", 3] };
+// const dc = { d: ["2", 3], c: "1" };
+// console.log(eqObjects(cd, dc)); // => true
+
+//Fails
+// const cd2 = { c: "1", d: ["2", 3, 4] };
+// console.log(eqObjects(cd, cd2)); // => false
+
+module.exports = eqObjects;
