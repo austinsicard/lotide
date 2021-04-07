@@ -1,6 +1,5 @@
-
-// const assertArraysEqual = require('./assertArraysEqual');
-// const eqArrays = require('./eqArrays');
+const eqArrays = require('./eqArrays');
+const assertArraysEqual = require('./assertArraysEqual');
 
 
 const middle = function(array) {
@@ -15,13 +14,11 @@ const middle = function(array) {
       let j = (array.length - 1) / 2;
     final.push(array[j]);
     }
-
-    console.log(final);
   return final;
 };
 
-//assertArrayEqual(eqArrays(middle([1, 2, 3, 4, 5, 6])), true); // => [3, 4]
-middle([1, 2, 3, 4, 5, 6, 7]);
-//middle(["Hello", "There", "Buddy"]);
+//middle([1, 2, 3, 4, 5, 6, 7]);
+// middle(["Hello", "There", "Buddy"]);
+// middle([]);
 
-module.export = middle;
+module.exports = middle;
