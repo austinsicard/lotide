@@ -1,52 +1,5 @@
-const eqArrays = function(actual, expected) {
-
-  let compared = false;
-
-  if (Array.isArray(actual) && Array.isArray(expected)
-  && actual.length === expected.length) {
-
-    compared = true;
-
-    for (let i = 0 ; i < actual.length ; i++) {
-      
-      if (actual[i] !== expected[i]) {
-
-        compared = false;
-      }
-    }
-  }
-  return compared;
-};
-
-function assertArraysEqual(actual, expected) {
-
-  let compared = false;
-
-  if (Array.isArray(actual) && Array.isArray(expected) 
-  && actual.length === expected.length) {
-
-    compared = true;
-
-    for (let i = 0; i < actual.length; i++) {
-
-      if (actual[i] !== expected[i]) {
-        
-        compared = false;
-      }
-    }
-  }
-    if (compared == true) {
-      
-      console.log(`✅ Assertion Passed: ${actual} ===  ${expected}`);
-    
-    } else {
-      
-      console.log(`❌ Assertion Failed: ${actual} !== ${expected}`);
-  
-    } 
-
-  };
-
+const eqArrays = require('./eqArrays');
+const assertArraysEqual = require('./assertArraysEqual');
 
 const letterPositions = function(wordTest) {    /* Declaring letterPositions as a function with the 
                                                    parameters "wordtest" which is expected to be a String */
@@ -62,17 +15,19 @@ const letterPositions = function(wordTest) {    /* Declaring letterPositions as 
       
       if (results[wordTest[i]]) {   
         
-        results[wordTest[i]].push(i);
-      
+        results[wordTest[i]].push(i);     // Push the numbers after the first occurence letter from our index counter "i" into the empty array 
+
       } else {
 
-        results[wordTest[i]] = [];         // Creates an empty array inside the object results so "i" can be pushed
-        results[wordTest[i]].push(i);     // Push the letter 
+        results[wordTest[i]] = [];         /* Sets a new key in results which equals letter in the index and 
+                                              stores an empty array value so we can push the index number in */ 
+
+        results[wordTest[i]].push(i);     // Push the first letter from our index counter "i" into the empty array 
 
       }
     }
   }
-  return results;
+  return results; 
 };
 
-console.log(letterPositions("hello there"));
+assertArraysEqual(letterPositions("hello there").e, [1, 8, 10]);
