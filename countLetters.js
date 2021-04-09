@@ -1,12 +1,4 @@
-const assertEqual = function(actual, expected) {
-
-  if (actual === expected) {
-    console.log(`✅ Assertion Passed: ${actual} ===  ${expected}`);
-  } else {
-    console.log(`❌ Assertion Failed: ${actual} !== ${expected}`);
-  }
-
-};
+const assertObjectsEqual = require('./assertObjectsEqual');
 
 const countLetters = function (ourSentance) {
   const final = {};
@@ -14,16 +6,15 @@ const countLetters = function (ourSentance) {
   for (let our of ourSentance) {
 
     if (our !== " ") {
-
-    if (final[our]) {
-
-      final[our] += 1;
-
-    } else {
-
-      final[our] = 1;
+      if (final[our]) {
+        final[our] += 1;
+      } else {
+        final[our] = 1;   
+      }
     }
   }
-}
   return final;
 };
+assertObjectsEqual(countLetters(" test "), { t: 2, e: 1, s: 1 });
+
+// console.log(countLetters(" test "));
